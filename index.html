@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pyro 101 &amp; Effect Glossary | Pyro Bench</title>
+<meta name="description" content="New to fireworks? Learn the effects you see in the sky and the jargon behind the Pyro Bench tools — Peony, Willow, Crossette, cue, e-match, fuse burn rate and more, in plain English. Free, by David Kaniecki." />
+<meta name="robots" content="all" />
+<meta name="theme-color" content="#0d0e12" />
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Pyro 101 & Effect Glossary — Pyro Bench" />
+<meta property="og:description" content="A plain-English on-ramp to fireworks: look up effects you see in the sky and learn the words behind the Pyro Bench tools." />
+<meta property="og:url" content="https://pyro-101.vercel.app/" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230d0e12'/%3E%3Cg%20stroke-width='3'%20stroke-linecap='round'%3E%3Cline%20x1='32'%20y1='32'%20x2='32'%20y2='10'%20stroke='%23ffb02e'/%3E%3Cline%20x1='32'%20y1='32'%20x2='32'%20y2='54'%20stroke='%23ff5d73'/%3E%3Cline%20x1='32'%20y1='32'%20x2='10'%20y2='32'%20stroke='%2329ABE2'/%3E%3Cline%20x1='32'%20y1='32'%20x2='54'%20y2='32'%20stroke='%237CFC9B'/%3E%3Cline%20x1='32'%20y1='32'%20x2='16'%20y2='16'%20stroke='%23ffd86a'/%3E%3Cline%20x1='32'%20y1='32'%20x2='48'%20y2='48'%20stroke='%23c77dff'/%3E%3Cline%20x1='32'%20y1='32'%20x2='48'%20y2='16'%20stroke='%23ff5d73'/%3E%3Cline%20x1='32'%20y1='32'%20x2='16'%20y2='48'%20stroke='%2329ABE2'/%3E%3C/g%3E%3Ccircle%20cx='32'%20cy='32'%20r='3.5'%20fill='%23fff'/%3E%3C/svg%3E" />
+
+<style>
+  :root{
+    --bg:#0d0e12;--panel:#15171e;--panel2:#1c1f28;--ink:#f4f5f7;--muted:#9aa0ad;
+    --line:#2a2e3a;--accent:#ff6a2b;--accent2:#ffb02e;
+    --blue:#29ABE2;--red:#CC2229;--ok:#35c46a;--radius:16px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55;}
+  .wrap{max-width:960px;margin:0 auto;padding:24px 18px 70px}
+  a{color:var(--accent2)}
+
+  /* Header / brand (matches the suite) */
+  header{text-align:center;margin-bottom:18px}
+  .brand{display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px;min-height:48px}
+  .wordmark{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:800;font-size:27px;letter-spacing:-0.02em}
+  .spark{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:11px;flex:none;background:linear-gradient(145deg,#ff7a3d,#e8512b);color:#fff;box-shadow:0 4px 14px rgba(232,81,43,.35)}
+  .spark svg{width:21px;height:21px}
+  footer .wordmark{font-size:18px;gap:7px}
+  footer .spark{width:28px;height:28px}
+  footer .spark svg{width:15px;height:15px}
+  .brand img{height:46px;width:auto;display:block}
+  .brand a{display:inline-flex;align-items:center;text-decoration:none}
+  .brand .fallback{display:none;font-weight:800;letter-spacing:.06em;font-size:22px;color:var(--ink);text-transform:uppercase}
+  .brand.img-failed img{display:none}
+  .brand.img-failed .fallback{display:inline-block}
+  .kick{display:inline-block;letter-spacing:.18em;text-transform:uppercase;font-size:11px;font-weight:700;
+    color:var(--accent2);border:1px solid var(--line);border-radius:999px;padding:5px 14px;margin-bottom:14px;}
+  h1{font-size:29px;line-height:1.12;margin:0 0 8px}
+  .sub{color:var(--muted);font-size:15.5px;margin:0 auto;max-width:600px}
+
+  /* Tabs */
+  .tabs{display:flex;gap:8px;justify-content:center;margin:22px 0 18px}
+  .tab{cursor:pointer;background:var(--panel);color:var(--ink);border:1px solid var(--line);
+    border-radius:11px;padding:11px 18px;font-size:15px;font-weight:600;transition:.12s;display:flex;align-items:center;gap:8px}
+  .tab small{font-weight:400;color:var(--muted);font-size:12px}
+  .tab[aria-selected="true"]{border-color:var(--accent);background:#2a1c14;color:#fff}
+  .tab[aria-selected="true"] small{color:#e7c9b6}
+
+  section[hidden]{display:none}
+
+  /* Glossary toolbar */
+  .toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:14px}
+  .search{flex:1;min-width:220px;position:relative}
+  .search input{width:100%;background:var(--panel2);color:var(--ink);border:1px solid var(--line);
+    border-radius:11px;padding:12px 13px 12px 38px;font-size:15px}
+  .search input:focus{outline:2px solid var(--accent);outline-offset:1px}
+  .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.6}
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  .filters button{cursor:pointer;background:var(--panel2);color:var(--muted);border:1px solid var(--line);
+    border-radius:999px;padding:9px 14px;font-size:13.5px;font-weight:600;transition:.12s}
+  .filters button[aria-pressed="true"]{border-color:var(--accent2);color:#fff;background:#2a1c14}
+  .count{color:var(--muted);font-size:12.5px;margin:0 0 14px;letter-spacing:.02em}
+  .note{color:var(--muted);font-size:13px;margin:0 0 16px}
+
+  /* Glossary grid */
+  .fx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:16px}
+  .fx-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;
+    display:flex;flex-direction:column;transition:border-color .15s,transform .15s;cursor:default}
+  .fx-card:hover{border-color:#3a4150;transform:translateY(-2px)}
+  .fx-card.flash{border-color:var(--accent2);box-shadow:0 0 0 2px rgba(255,176,46,.35)}
+  .fx-burst{position:relative;aspect-ratio:1/1;border-radius:10px;border:1px solid var(--line);overflow:hidden;
+    background:radial-gradient(circle at 50% 56%,#12141c 0%,#0a0b0f 78%);margin-bottom:12px}
+  .fx-svg{width:100%;height:100%;display:block}
+  .fx-cat{align-self:flex-start;font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;
+    color:var(--accent2);background:#241b10;border:1px solid #4a3a1c;border-radius:6px;padding:2px 7px;margin-bottom:7px}
+  .fx-cat[data-cat="aerial"]{color:#7bd3ff;background:#0f1f2a;border-color:#1d4258}
+  .fx-cat[data-cat="novelty"]{color:#9be3ad;background:#0f2418;border-color:#1f4d34}
+  .fx-name{margin:0 0 2px;font-size:16.5px;font-weight:700}
+  .fx-aka{margin:0 0 8px;font-size:12.5px;color:var(--muted);font-style:italic;min-height:1em}
+  .fx-desc{margin:0 0 12px;font-size:13.5px;color:#d4d8e0;flex:1}
+  .fx-yt{font-size:13px;font-weight:600;text-decoration:none;align-self:flex-start}
+  .fx-yt:hover{text-decoration:underline}
+  .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 16px;border:1px dashed var(--line);border-radius:14px}
+
+  /* Pyro 101 */
+  .safety{background:#241b10;border:1px solid #5c4f1d;border-radius:14px;padding:16px 18px;margin-bottom:18px}
+  .safety h2{margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent2)}
+  .safety ul{margin:0;padding-left:18px}
+  .safety li{margin:6px 0;font-size:14px;color:#f1e6cf}
+  .safety strong{color:#fff}
+  details.term{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+  details.term>summary{list-style:none;cursor:pointer;padding:15px 16px;display:flex;align-items:baseline;gap:10px}
+  details.term>summary::-webkit-details-marker{display:none}
+  .term-name{font-weight:700;font-size:15.5px}
+  .term-aka{color:var(--muted);font-size:12.5px;font-style:italic}
+  details.term .chev{margin-left:auto;color:var(--muted);transition:.2s;align-self:center}
+  details.term[open] .chev{transform:rotate(90deg)}
+  details.term.flash{border-color:var(--accent2);box-shadow:0 0 0 2px rgba(255,176,46,.35)}
+  .term-body{padding:0 16px 16px;font-size:14px;color:#d4d8e0}
+  .term-body p{margin:0 0 10px}
+  .tool-link{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#04222e;
+    font-weight:700;font-size:13px;text-decoration:none;padding:8px 13px;border-radius:9px}
+  .tool-link:hover{background:#4fc0f0}
+
+  /* Footer (matches the suite) */
+  .disclaimer{margin-top:26px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+  .disclaimer strong{color:#cfd3dc}
+  footer{text-align:center;margin-top:22px;font-size:12px;color:var(--muted)}
+  footer a{color:var(--accent2);text-decoration:none}
+  footer .brand{margin:0 0 8px;min-height:0}
+  footer .brand img{height:28px}
+  footer .brand .fallback{font-size:15px}
+  .xlinks{margin-top:14px;font-size:12px;line-height:1.8}
+
+  @media(max-width:560px){
+    .wrap{padding:20px 14px 56px}
+    h1{font-size:24px}
+    .tab{padding:10px 13px;font-size:14px}
+    .tab small{display:none}
+  }
+
+  /* --- Animations: play on hover, on tap (.play), or keyboard focus --- */
+  .fx-svg .burst{transform-box:view-box;transform-origin:60px 60px}
+  .fx-svg .draw{stroke-dasharray:230;stroke-dashoffset:0}
+  @media (prefers-reduced-motion: no-preference){
+    .fx-card:hover .fx-svg .burst,.fx-card:focus-within .fx-svg .burst,.fx-card.play .fx-svg .burst{animation:bloom .85s cubic-bezier(.2,.7,.3,1)}
+    .fx-card:hover .fx-svg .draw,.fx-card:focus-within .fx-svg .draw,.fx-card.play .fx-svg .draw{animation:draw 1s ease-out}
+    .fx-card:hover .fx-svg .spark,.fx-card:focus-within .fx-svg .spark,.fx-card.play .fx-svg .spark{animation:spark .65s steps(2,end) 3}
+    .fx-card:hover .fx-svg .wig,.fx-card:focus-within .fx-svg .wig,.fx-card.play .fx-svg .wig{animation:wig .5s ease-in-out 4 alternate}
+  }
+  @keyframes bloom{0%{transform:scale(.12);opacity:.15}55%{opacity:1}100%{transform:scale(1);opacity:1}}
+  @keyframes draw{from{stroke-dashoffset:230}to{stroke-dashoffset:0}}
+  @keyframes spark{0%,100%{opacity:1}50%{opacity:.2}}
+  @keyframes wig{from{transform:translateX(-2.5px)}to{transform:translateX(2.5px)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <a class="wordmark" href="https://pyro-bench.vercel.app/" rel="noopener">
+        <span class="spark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+        Pyro Bench
+      </a>
+    </div>
+    <span class="kick">Pyro Bench · Learn the Hobby</span>
+    <h1>Pyro 101 &amp; Effect Glossary</h1>
+    <p class="sub">New to fireworks? Start here. Look up what you see in the sky, and learn the words behind the other Pyro Bench tools — in plain English, no experience needed.</p>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tabGlossary" role="tab" aria-selected="true" aria-controls="secGlossary">🎆 Effect Glossary <small>what it looks like</small></button>
+    <button class="tab" id="tabPyro" role="tab" aria-selected="false" aria-controls="secPyro">📖 Pyro 101 <small>what the words mean</small></button>
+  </div>
+
+  <!-- ===================== GLOSSARY ===================== -->
+  <section id="secGlossary" role="tabpanel" aria-labelledby="tabGlossary">
+    <p class="note">Stylized illustrations — <strong>hover or tap a card</strong> to watch the effect bloom. Names vary a little by manufacturer and country.</p>
+    <div class="toolbar">
+      <div class="search">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="search" type="search" placeholder="Search effects — e.g. willow, mum, ring…" aria-label="Search effects">
+      </div>
+      <div class="filters" id="filters">
+        <button data-cat="all" aria-pressed="true">All</button>
+        <button data-cat="aerial" aria-pressed="false">Aerial</button>
+        <button data-cat="cake" aria-pressed="false">Cake &amp; Ground</button>
+        <button data-cat="novelty" aria-pressed="false">Novelty</button>
+      </div>
+    </div>
+    <p class="count" id="fxCount"></p>
+    <div class="fx-grid" id="fxGrid"></div>
+  </section>
+
+  <!-- ===================== PYRO 101 ===================== -->
+  <section id="secPyro" role="tabpanel" aria-labelledby="tabPyro" hidden>
+    <div class="safety">
+      <h2>⚠ Start here — staying safe &amp; legal</h2>
+      <ul>
+        <li>Fireworks are explosives. A <strong>sober shooter</strong>, eye and ear protection, and a charged hose or fire extinguisher within reach are non-negotiable.</li>
+        <li><strong>Know your class:</strong> 1.4G is consumer-grade; 1.3G is professional display-grade and generally requires a license. If you're unsure which you have, treat it as the more restricted class.</li>
+        <li><strong>Check local laws and permits</strong> before you buy or fire — they vary by state, county, and town.</li>
+        <li><strong>Keep your distance:</strong> a widely used minimum is <strong>at least 70 ft of clearance for every inch of shell diameter</strong> — treat that as a floor, give yourself more whenever you can, and keep spectators well back and upwind.</li>
+        <li><strong>Never</strong> lean over a tube, and <strong>never return to a dud</strong> — wait <strong>at least 20 minutes</strong> (longer is safer), then soak it thoroughly in water before handling.</li>
+      </ul>
+    </div>
+    <p class="note">These are the words the other Pyro Bench tools assume you already know. Tap any term to expand it — and jump straight to the tool that uses it.</p>
+    <div id="termList"></div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <div class="disclaimer">
+    <strong>For learning, not a substitute for training.</strong> This page is a plain-English primer for newcomers. Fireworks are dangerous and laws differ everywhere — nothing here is professional advice. Always follow the manufacturer's instructions, your local laws and permits, and proper safety practice. See the <a href="terms.html">Terms of Use</a>.
+  </div>
+
+  <footer>
+    <div class="brand">
+      <a class="wordmark" href="https://pyro-bench.vercel.app/" rel="noopener">
+        <span class="spark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+        Pyro Bench
+      </a>
+    </div>
+    <span style="color:var(--accent2);font-weight:700">Free, no subscriptions.</span> &nbsp;·&nbsp; Tools by David Kaniecki
+    <div style="margin-top:10px"><a href="https://buymeacoffee.com/kaniecki" target="_blank" rel="noopener">☕ Support development</a></div>
+    <div class="xlinks">
+      <div>More Pyro Bench tools:
+        <a href="https://cobra-scripter.vercel.app/" target="_blank" rel="noopener">COBRA Scripter</a> ·
+        <a href="https://pyrofuse-pro.vercel.app/" target="_blank" rel="noopener">PyroFuse Pro</a> ·
+        <a href="https://mjg-talon-calculator.vercel.app/" target="_blank" rel="noopener">MJG &amp; Talon Calculator</a> ·
+        <a href="https://pyro-bench.vercel.app/" target="_blank" rel="noopener">Pyro Bench</a>
+      </div>
+      <div style="margin-top:4px"><a href="terms.html">Terms of Use</a></div>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* =========================================================================
+   DATA  — edit/expand these two arrays to add effects or terms.
+   EFFECT: { name, aka, cat:'aerial'|'cake'|'novelty', desc, shape, pal, [core], [q] }
+     shape  -> which animated illustration to draw (see renderBurst below)
+     pal    -> color palette key (see PAL)
+     q      -> optional YouTube search override (defaults to "<name> firework")
+   TERM:   { term, aka, def, tool:{name,url}|null }
+   ========================================================================= */
+
+const COBRA="https://cobra-scripter.vercel.app/";
+const FUSE ="https://pyrofuse-pro.vercel.app/";
+const CALC ="https://mjg-talon-calculator.vercel.app/";
+
+const EFFECTS=[
+  {name:"Peony",aka:"the classic ball",cat:"aerial",shape:"peony",pal:"multi",
+   desc:"A perfect sphere of colored stars that fly straight out and fade, leaving no trail. The most common and recognizable aerial shell."},
+  {name:"Chrysanthemum",aka:"Mum",cat:"aerial",shape:"chrys",pal:"gold",
+   desc:"Like a peony, but every star leaves a glittering tail as it flies, so the whole ball looks soft and full."},
+  {name:"Dahlia",aka:"big-star peony",cat:"aerial",shape:"dahlia",pal:"red",
+   desc:"A peony with fewer but larger, heavier stars that fly farther — a bold, wide-spaced break."},
+  {name:"Willow",aka:"weeping willow",cat:"aerial",shape:"willow",pal:"gold",
+   desc:"Long, soft golden trails that arc up and then droop slowly toward the ground like willow branches."},
+  {name:"Palm",aka:"palm tree",cat:"aerial",shape:"palm",pal:"goldgreen",
+   desc:"A thick rising trail forms the trunk, then the shell opens into a few big curving fronds that hang over — a palm tree in the sky."},
+  {name:"Brocade",aka:"brocade crown",cat:"aerial",shape:"brocade",pal:"goldsilver",
+   desc:"A dense, full burst of glittering silver-gold trails that fill the sky like a shimmering dome."},
+  {name:"Kamuro",aka:"Japanese 'boy's haircut'",cat:"aerial",shape:"kamuro",pal:"gold",
+   desc:"A heavy, packed burst of glitter trails that hang in the air and fall very slowly.",q:"kamuro firework"},
+  {name:"Crossette",aka:"crossbreak",cat:"aerial",shape:"crossette",pal:"multi",
+   desc:"Each star flies out and then splits into smaller stars, painting a grid of little crosses across the sky."},
+  {name:"Comet",aka:"tail",cat:"aerial",shape:"comet",pal:"gold",
+   desc:"A single bright star that shoots up trailing a thick glowing tail. Often used to lead into a bigger break."},
+  {name:"Mine",aka:"mine bag",cat:"aerial",shape:"mine",pal:"multi",
+   desc:"Stars or comets fired straight up out of the mortar — a fan of light shooting upward, rather than a break high overhead."},
+  {name:"Strobe",aka:"flitter / twinkle",cat:"aerial",shape:"sparkle",pal:"blue",
+   desc:"Stars that flash on and off instead of burning steadily, filling the sky with twinkling points of light."},
+  {name:"Crackle",aka:"crackling / dragon eggs",cat:"aerial",shape:"sparkle",pal:"gold",
+   desc:"Tiny granules that pop with a sharp crackling sound and snapping sparks."},
+  {name:"Ring / Saturn",aka:"ring shell",cat:"aerial",shape:"ring",pal:"blue",
+   desc:"Stars arranged to break into a flat ring or halo — a Saturn shape — instead of a ball.",q:"saturn ring firework"},
+  {name:"Pistil",aka:"core / heart",cat:"aerial",shape:"pistil",pal:"multi",core:"#CC2229",
+   desc:"A break with a second, different-colored cluster of stars in the very center, like the pistil inside a flower."},
+  {name:"Color-change",aka:"ghost / transformation",cat:"aerial",shape:"colorchange",pal:"redblue",
+   desc:"Stars that start one color and switch to another partway through their burn — for example blue changing to red.",q:"color change firework"},
+  {name:"Spider",aka:"spider web",cat:"aerial",shape:"spider",pal:"gold",
+   desc:"Thin, fast, straight trails that shoot out and hang for a moment like spider legs, then drop."},
+  {name:"Fish",aka:"swimming fish",cat:"aerial",shape:"fish",pal:"multi",
+   desc:"Stars with built-in thrust that wiggle and dart in every direction, like fish swimming away from the burst."},
+  {name:"Horsetail",aka:"waterfall / cascade",cat:"aerial",shape:"horsetail",pal:"gold",
+   desc:"Heavy stars that shoot out and fall almost straight down, cascading like a waterfall or a horse's tail."},
+  {name:"Time Rain",aka:"slow glitter rain",cat:"aerial",shape:"timerain",pal:"gold",
+   desc:"Large, slow-burning glitter stars that drift down gently for several seconds, like sparkling rain.",q:"time rain firework"},
+  {name:"Cake / Multi-shot",aka:"repeater / 200-gram",cat:"cake",shape:"cake",pal:"multi",
+   desc:"A box of many small tubes, pre-fused to fire one after another from a single fuse — the backbone of most backyard shows.",q:"firework cake multishot"},
+  {name:"Roman Candle",aka:"candle",cat:"cake",shape:"candle",pal:"multi",
+   desc:"A single long tube that launches a series of stars or small comets one at a time, in sequence."},
+  {name:"Fountain / Gerb",aka:"gerb / cone",cat:"cake",shape:"fountain",pal:"gold",
+   desc:"A ground device that sprays a steady cone of sparks upward with no aerial break. ('Gerb' is the pro term.)",q:"firework fountain gerb"},
+  {name:"Mine bag / front",aka:"ground mine",cat:"cake",shape:"mine",pal:"multi",
+   desc:"A ground-level charge that throws a wide fan of stars or comets straight up — often lined up as a 'front' across the stage.",q:"firework mine front"},
+  {name:"Crackle ball",aka:"popper",cat:"novelty",shape:"sparkle",pal:"gold",
+   desc:"A small ground novelty that sits in place and throws out loud crackling sparks."},
+  {name:"Strobe pot",aka:"strobe / blinker",cat:"novelty",shape:"sparkle",pal:"white",
+   desc:"A small pot that flashes brilliant white light on and off — great as accents inside a larger show."},
+  {name:"Serpent / Snake",aka:"snake",cat:"novelty",shape:"serpent",pal:"green",
+   desc:"A novelty that wriggles a glowing, snaking trail along the ground.",q:"snake firework"}
+];
+
+const TERMS=[
+  {term:"Cue",aka:"channel / shot",tool:{name:"COBRA Scripter",url:COBRA},
+   def:"A single firing output. When the system sends power to a cue, everything wired to that cue lights at the same instant. Shows are built cue by cue."},
+  {term:"Series vs Parallel",aka:"two wiring methods",tool:{name:"MJG & Talon Calculator",url:CALC},
+   def:"Two ways to wire several igniters onto one cue. <strong>Series</strong> chains them end-to-end (fires more, but one bad igniter kills the whole cue). <strong>Parallel</strong> wires each one side-by-side (a dud won't stop the rest, but you can fire fewer). Talons must always be parallel."},
+  {term:"E-match / MJG",aka:"electric match / initiator",tool:{name:"MJG & Talon Calculator",url:CALC},
+   def:"A tiny match head with two wires that lights the instant the firing system sends current to it. MJG is a common brand. It's the fast, precise way to fire a scripted show."},
+  {term:"Talon clip",aka:"clip-on igniter",tool:{name:"MJG & Talon Calculator",url:CALC},
+   def:"A single-use electric igniter that clips straight onto a visco fuse — no taping or inserting. Convenient for cakes, but it's parallel-only and needs a longer firing pulse."},
+  {term:"Fuse, visco &amp; burn rate",aka:"safety fuse, sec/ft",tool:{name:"PyroFuse Pro",url:FUSE},
+   def:"Visco is the green coated hobby fuse. <strong>Burn rate</strong> is how fast it burns, measured in seconds per foot — it varies widely (often roughly 20–40 s/ft), so always measure your own roll rather than assuming. Knowing the rate lets you time when each cake fires."},
+  {term:"Lead-in",aka:"leader fuse",tool:{name:"PyroFuse Pro",url:FUSE},
+   def:"The length of fuse from where you light it to the first device — your safety buffer to get clear before anything fires."},
+  {term:"Overlap",aka:"fuse overlap",tool:{name:"PyroFuse Pro",url:FUSE},
+   def:"Extra fuse left where two pieces are joined so the fire reliably passes from one to the next. It's added length that doesn't count toward your timing."},
+  {term:"Chain fusing",aka:"chaining cakes",tool:{name:"PyroFuse Pro",url:FUSE},
+   def:"Linking several cakes together with fuse so a single light sets off a timed sequence — the heart of a hand-fired show."},
+  {term:"Breakout board / slat",aka:"rail / terminal strip",tool:{name:"MJG & Talon Calculator",url:CALC},
+   def:"A board out in the field where your shooting wire splits out to many igniters, so the firing module doesn't need a separate wire all the way to every shell."},
+  {term:"Continuity test",aka:"continuity check",tool:{name:"MJG & Talon Calculator",url:CALC},
+   def:"A built-in test that sends a tiny, safe current through a cue to confirm the igniter is properly connected — <em>before</em> you fire, without setting it off."},
+  {term:"Firing system / module",aka:"firing panel",tool:{name:"MJG & Talon Calculator",url:CALC},
+   def:"The electronic box that sends power to your cues on command. Common systems include COBRA, FireTEK, FireOne, and IGNITE."},
+  {term:"STEP / script",aka:"show script",tool:{name:"COBRA Scripter",url:COBRA},
+   def:"In COBRA, a <strong>STEP</strong> is one timed firing instruction (fire this cue at this time). A <strong>script</strong> is the full list of steps that runs your show."},
+  {term:"Mortar / tube / rack",aka:"gun / HDPE tube",tool:null,
+   def:"The tube a shell is loaded into and launched from — usually HDPE plastic, often grouped together in a rack or 'gun.'"},
+  {term:"Shell size (caliber)",aka:"bore / mm",tool:null,
+   def:"The diameter of a shell and its mortar, such as 2\", 3\", or 6\". Bigger shells fly higher and break wider — and require bigger setback distances."},
+  {term:"1.4G vs 1.3G",aka:"consumer vs display",tool:null,
+   def:"Hazard classes. <strong>1.4G</strong> is consumer-grade fireworks anyone may buy where legal. <strong>1.3G</strong> is professional display-grade, which generally requires a license. Always know which you're handling."},
+  {term:"Lift, break &amp; time fuse",aka:"the parts of a shell",tool:null,
+   def:"Three parts of an aerial shell: the <strong>lift charge</strong> launches it, the <strong>time fuse</strong> sets how long until it bursts at altitude, and the <strong>break</strong> is the charge that bursts it into stars."},
+  {term:"Spectator setback",aka:"safety distance",tool:null,
+   def:"The minimum distance between the audience and the fireworks. A widely used floor is at least 70 ft of setback for every inch of shell diameter (the professional display standard) — treat it as a minimum, not a target, and always follow whichever is largest: that rule, the manufacturer's instructions, or your local code."}
+];
+
+/* =========================================================================
+   COLOR PALETTES  (firework star colors)
+   ========================================================================= */
+const PAL={
+  multi:["#ff5d73","#ffd86a","#5ac8ff","#7CFC9B","#c77dff"],
+  gold:["#ffd86a","#fff3c4","#ffb03a"],
+  silver:["#dfe7f0","#ffffff","#c7d2e0"],
+  red:["#ff5d73","#CC2229","#ff9aa6"],
+  blue:["#5ac8ff","#29ABE2","#bfe9ff"],
+  green:["#7CFC9B","#35c46a","#c8ffd8"],
+  white:["#ffffff","#dfe7f0","#bfe9ff"],
+  redblue:["#ff5d73","#5ac8ff","#29ABE2","#CC2229"],
+  goldgreen:["#ffd86a","#7CFC9B","#ffb03a"],
+  goldsilver:["#ffd86a","#dfe7f0","#fff3c4"]
+};
+
+/* =========================================================================
+   ANIMATED SVG BURST GENERATOR
+   One small function per "archetype"; effects map to an archetype + palette,
+   so adding an effect is just adding a data row above.
+   ========================================================================= */
+const f=n=>Math.round(n*10)/10;
+const seg=(x1,y1,x2,y2,c,w,cls)=>`<line x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"${cls?` class="${cls}"`:""}/>`;
+const circ=(x,y,r,c,cls,d)=>`<circle cx="${f(x)}" cy="${f(y)}" r="${r}" fill="${c}"${cls?` class="${cls}"`:""}${d!=null?` style="animation-delay:${d}s"`:""}/>`;
+const pth=(d,c,w,cls)=>`<path d="${d}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"${cls?` class="${cls}"`:""}/>`;
+const svg=inner=>`<svg viewBox="0 0 120 120" class="fx-svg" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${inner}</svg>`;
+
+/* tiny seeded PRNG so each effect's layout is varied but stable */
+function rng(seed){let s=(seed>>>0)||1;return()=>{s=(s+0x6D2B79F5)>>>0;let t=Math.imul(s^(s>>>15),1|s);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296;};}
+
+function radial(colors,r,o){
+  const {count=16,len=42,dot=3,trail=false,core=null,thin=false,shift=false}=o||{};
+  let s="";
+  for(let i=0;i<count;i++){
+    const a=(i/count)*Math.PI*2;
+    const L=len*(0.82+r()*0.32);
+    const x=60+Math.cos(a)*L, y=60+Math.sin(a)*L;
+    const col=colors[i%colors.length];
+    const tip=shift?colors[(i+1)%colors.length]:col;
+    if(trail) s+=seg(60+Math.cos(a)*7,60+Math.sin(a)*7,x,y,col,3.4);
+    s+=seg(60,60,x,y,col,thin?1:1.8);
+    if(dot>0) s+=circ(x,y,dot,tip);
+  }
+  let inner=`<g class="burst">${s}`;
+  if(core) inner+=circ(60,60,9,core)+circ(60,60,3.5,"#fff");
+  return inner+"</g>";
+}
+function ring(colors){
+  let s="";const n=22;
+  for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2;s+=circ(60+Math.cos(a)*42,60+Math.sin(a)*23,2.5,colors[i%colors.length]);}
+  s+=circ(60,60,2.4,colors[0]);
+  return `<g class="burst">${s}</g>`;
+}
+function droop(colors,r,o){
+  const {count=14,droop=46,len=34,start=205,span=130}=o||{};
+  const cx=60, cy=54; let s="";
+  for(let i=0;i<count;i++){
+    const t=count<=1?0.5:i/(count-1);
+    const a=(start+span*t)*Math.PI/180;
+    const L=len*(0.8+r()*0.45);
+    const px=cx+Math.cos(a)*L, py=cy+Math.sin(a)*L;
+    const ex=px+(r()*5-2.5), ey=py+droop*(0.75+r()*0.5);
+    const col=colors[i%colors.length];
+    s+=pth(`M${f(cx)} ${f(cy)} Q ${f(px)} ${f(py)} ${f(ex)} ${f(ey)}`,col,1.7,"draw");
+    s+=circ(ex,ey,1.7,col);
+  }
+  return s;
+}
+function palm(colors,r){
+  const gold=colors[0]; let s=pth("M60 112 C 57 88 60 70 60 50",gold,3,"draw");
+  const fr=6;
+  for(let i=0;i<fr;i++){
+    const t=i/(fr-1);const a=(205+130*t)*Math.PI/180;
+    const px=60+Math.cos(a)*30, py=50+Math.sin(a)*30;
+    const ex=px+(r()*4-2), ey=py+34;
+    s+=pth(`M60 50 Q ${f(px)} ${f(py)} ${f(ex)} ${f(ey)}`,colors[(i%(colors.length-1))+1]||gold,1.8,"draw");
+    s+=circ(ex,ey,1.8,gold);
+  }
+  return s;
+}
+function crossette(colors){
+  let s="";const n=6;
+  for(let i=0;i<n;i++){
+    const a=(i/n)*Math.PI*2+0.3;const x=60+Math.cos(a)*40,y=60+Math.sin(a)*40;const col=colors[i%colors.length];
+    s+=seg(60,60,x,y,col,1.8)+seg(x-5,y,x+5,y,col,1.6)+seg(x,y-5,x,y+5,col,1.6);
+  }
+  return `<g class="burst">${s}</g>`;
+}
+function comet(colors,r,o){
+  const {n=1}=o||{};let s="";
+  if(n<=1){return pth("M60 114 L60 40",colors[0],2.6,"draw")+circ(60,36,5,colors[0])+circ(60,36,2,"#fff");}
+  for(let i=0;i<n;i++){const hy=104-i*22;s+=pth(`M60 ${f(hy+16)} L60 ${f(hy)}`,colors[i%colors.length],2.2,"draw")+circ(60,hy,3.4,colors[i%colors.length]);}
+  return s;
+}
+function mineFountain(colors,r,o){
+  const {spread=90,len=56,dotty=true,base=110,n=16}=o||{};
+  let s="";
+  for(let i=0;i<n;i++){
+    const t=n<=1?0.5:i/(n-1);
+    const a=(270-spread/2+spread*t)*Math.PI/180;
+    const L=len*(0.7+r()*0.5);
+    const x=60+Math.cos(a)*L, y=base+Math.sin(a)*L;
+    const col=colors[i%colors.length];
+    s+=seg(60,base,x,y,col,1.6,"draw");
+    if(dotty) s+=circ(x,y,2.2,col);
+  }
+  return s;
+}
+function cake(colors,r){
+  let s="";const spots=[[34,42],[86,38],[60,58],[40,80],[84,78]];
+  spots.forEach((p,k)=>{const n=8;for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2;const L=12+r()*4;const x=p[0]+Math.cos(a)*L,y=p[1]+Math.sin(a)*L;const col=colors[(k+i)%colors.length];s+=seg(p[0],p[1],x,y,col,1.2)+circ(x,y,1.6,col);}});
+  return `<g class="burst">${s}</g>`;
+}
+function sparkle(colors,r){
+  let s="";const n=30;
+  for(let i=0;i<n;i++){const x=18+r()*84,y=18+r()*84;s+=circ(x,y,1.4+r()*1.4,colors[i%colors.length],"spark",Math.round(r()*80)/100);}
+  return s;
+}
+function fish(colors,r){
+  let s="";const n=9;
+  for(let i=0;i<n;i++){
+    const a=(i/n)*Math.PI*2+(r()-0.5)*0.25;
+    const ux=Math.cos(a), uy=Math.sin(a), px=-uy, py=ux;
+    const len=44*(0.82+r()*0.3);
+    let d="";const steps=12;
+    for(let k=0;k<=steps;k++){
+      const t=k/steps;
+      const rad=8+t*len;
+      const off=Math.sin(t*Math.PI*3)*5*(1-t*0.35);
+      const x=60+ux*rad+px*off, y=60+uy*rad+py*off;
+      d+=(k===0?`M${f(x)} ${f(y)}`:` L${f(x)} ${f(y)}`);
+    }
+    const col=colors[i%colors.length];
+    s+=pth(d,col,1.6,"draw");
+    s+=circ(60+ux*(8+len),60+uy*(8+len),2.6,col);
+  }
+  return s;
+}
+function wiggle(colors,r,o){
+  const {ground=false}=o||{};let s="";
+  if(ground){for(let i=0;i<5;i++){const y=34+i*12;s+=pth(`M16 ${y} q 12 -8 24 0 t 24 0 t 24 0`,colors[i%colors.length],1.8,"wig");}return s;}
+  const n=10;
+  for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2;const L=42;const ex=60+Math.cos(a)*L,ey=60+Math.sin(a)*L;
+    const mx=60+Math.cos(a)*L*0.5+(r()*10-5), my=60+Math.sin(a)*L*0.5+(r()*10-5);
+    s+=pth(`M60 60 Q ${f(mx)} ${f(my)} ${f(ex)} ${f(ey)}`,colors[i%colors.length],1.6,"wig")+circ(ex,ey,1.8,colors[i%colors.length]);}
+  return s;
+}
+
+function renderBurst(fx,idx){
+  const r=rng((idx+1)*40503);
+  const c=PAL[fx.pal]||PAL.multi;
+  switch(fx.shape){
+    case "peony":      return svg(radial(c,r,{count:16,len:42,dot:3}));
+    case "chrys":      return svg(radial(c,r,{count:18,len:44,dot:2.6,trail:true}));
+    case "dahlia":     return svg(radial(c,r,{count:10,len:48,dot:4.2}));
+    case "pistil":     return svg(radial(c,r,{count:16,len:42,dot:3,core:fx.core||c[1]}));
+    case "colorchange":return svg(radial(c,r,{count:16,len:42,dot:3,shift:true}));
+    case "spider":     return svg(radial(c,r,{count:14,len:50,dot:0,thin:true}));
+    case "ring":       return svg(ring(c));
+    case "willow":     return svg(droop(c,r,{count:14,droop:46}));
+    case "kamuro":     return svg(droop(c,r,{count:20,droop:54,len:30}));
+    case "brocade":    return svg(droop(c,r,{count:18,droop:48}));
+    case "horsetail":  return svg(droop(c,r,{count:14,droop:60,start:235,span:70}));
+    case "timerain":   return svg(droop(c,r,{count:9,droop:50,len:26}));
+    case "palm":       return svg(palm(c,r));
+    case "crossette":  return svg(crossette(c));
+    case "comet":      return svg(comet(c,r,{n:1}));
+    case "candle":     return svg(comet(c,r,{n:4}));
+    case "mine":       return svg(mineFountain(c,r,{spread:120,len:58,dotty:true,base:110,n:16}));
+    case "fountain":   return svg(mineFountain(c,r,{spread:56,len:62,dotty:false,base:112,n:22}));
+    case "cake":       return svg(cake(c,r));
+    case "sparkle":    return svg(sparkle(c,r));
+    case "fish":       return svg(fish(c,r));
+    case "serpent":    return svg(wiggle(c,r,{ground:true}));
+    default:           return svg(radial(c,r,{count:16,len:42,dot:3}));
+  }
+}
+
+/* =========================================================================
+   RENDER + INTERACTION
+   ========================================================================= */
+const $=s=>document.querySelector(s);
+const slug=s=>s.toLowerCase().replace(/&[a-z]+;/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const esc=s=>s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+const state={q:"",cat:"all"};
+
+const CATLABEL={aerial:"Aerial",cake:"Cake & Ground",novelty:"Novelty"};
+
+function cardHTML(fx,idx){
+  const term=fx.name.split("/")[0].trim();
+  const yt="https://www.youtube.com/@dominatorfireworks/search?query="+encodeURIComponent(term);
+  return `<article class="fx-card" id="e-${slug(fx.name)}" tabindex="0">
+    <div class="fx-burst">${renderBurst(fx,idx)}</div>
+    <span class="fx-cat" data-cat="${fx.cat}">${CATLABEL[fx.cat]}</span>
+    <h3 class="fx-name">${fx.name}</h3>
+    <p class="fx-aka">${fx.aka?"aka "+fx.aka:""}</p>
+    <p class="fx-desc">${fx.desc}</p>
+    <a class="fx-yt" href="${yt}" target="_blank" rel="noopener">See examples →</a>
+  </article>`;
+}
+
+function renderGlossary(){
+  const q=state.q.trim().toLowerCase();
+  const items=EFFECTS.map((fx,i)=>({fx,i})).filter(({fx})=>{
+    const okCat=state.cat==="all"||fx.cat===state.cat;
+    const hay=(fx.name+" "+fx.aka+" "+fx.desc).toLowerCase();
+    return okCat&&(!q||hay.includes(q));
+  });
+  const grid=$("#fxGrid");
+  if(!items.length){
+    grid.innerHTML=`<div class="empty">No effects match “${esc(state.q)}”. Try another word, or clear the search and filters.</div>`;
+    $("#fxCount").textContent="0 effects";
+    return;
+  }
+  grid.innerHTML=items.map(({fx,i})=>cardHTML(fx,i)).join("");
+  $("#fxCount").textContent=items.length+" "+(items.length===1?"effect":"effects")+(state.cat!=="all"?" · "+CATLABEL[state.cat]:"");
+}
+
+function renderTerms(){
+  $("#termList").innerHTML=TERMS.map(t=>{
+    const tool=t.tool?`<a class="tool-link" href="${t.tool.url}" target="_blank" rel="noopener">Open ${t.tool.name} →</a>`:"";
+    return `<details class="term" id="t-${slug(t.term)}"><summary><span class="term-name">${t.term}</span>${t.aka?`<span class="term-aka">${t.aka}</span>`:""}<span class="chev">›</span></summary><div class="term-body"><p>${t.def}</p>${tool}</div></details>`;
+  }).join("");
+}
+
+/* tabs */
+function showTab(which,push){
+  const glossary=which==="glossary";
+  $("#tabGlossary").setAttribute("aria-selected",glossary);
+  $("#tabPyro").setAttribute("aria-selected",!glossary);
+  $("#secGlossary").hidden=!glossary;
+  $("#secPyro").hidden=glossary;
+  if(push) history.replaceState(null,"","#"+(glossary?"glossary":"pyro101"));
+}
+$("#tabGlossary").onclick=()=>showTab("glossary",true);
+$("#tabPyro").onclick=()=>showTab("pyro",true);
+
+/* search + filters */
+$("#search").addEventListener("input",e=>{state.q=e.target.value;renderGlossary();});
+$("#filters").querySelectorAll("button").forEach(b=>{
+  b.onclick=()=>{
+    state.cat=b.dataset.cat;
+    $("#filters").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    renderGlossary();
+  };
+});
+
+/* tap-to-play on touch (no hover): briefly add .play, but ignore taps on the link */
+$("#fxGrid").addEventListener("click",e=>{
+  if(e.target.closest("a"))return;
+  const card=e.target.closest(".fx-card");
+  if(!card)return;
+  card.classList.remove("play");void card.offsetWidth;card.classList.add("play");
+  setTimeout(()=>card.classList.remove("play"),1200);
+});
+
+/* deep-link routing: #glossary, #pyro101, #e-<effect>, #t-<term> */
+function flash(el){el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1600);}
+function applyHash(){
+  const h=decodeURIComponent(location.hash.replace("#",""));
+  if(!h)return;
+  if(h==="pyro101"||h.indexOf("t-")===0) showTab("pyro");
+  else showTab("glossary");
+  const el=h&&document.getElementById(h);
+  if(el){
+    if(el.tagName==="DETAILS")el.open=true;
+    flash(el);
+    el.scrollIntoView({behavior:"smooth",block:"center"});
+  }
+}
+
+renderGlossary();
+renderTerms();
+applyHash();
+window.addEventListener("hashchange",applyHash);
+</script>
+</body>
+</html>
