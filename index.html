@@ -166,7 +166,7 @@
 
   <!-- ===================== GLOSSARY ===================== -->
   <section id="secGlossary" role="tabpanel" aria-labelledby="tabGlossary">
-    <p class="note">Stylized illustrations — <strong>hover or tap a card</strong> to watch the effect bloom. Names vary a little by manufacturer and country.</p>
+    <p class="note">Stylized illustrations — <strong>hover or tap a card</strong> to watch the effect bloom. Names vary a little by manufacturer and country. <a href="https://www.youtube.com/@dominatorfireworks" target="_blank" rel="noopener">Browse real shows on Dominator Fireworks →</a></p>
     <div class="toolbar">
       <div class="search">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -189,9 +189,9 @@
       <h2>⚠ Start here — staying safe &amp; legal</h2>
       <ul>
         <li>Fireworks are explosives. A <strong>sober shooter</strong>, eye and ear protection, and a charged hose or fire extinguisher within reach are non-negotiable.</li>
-        <li><strong>Know your class:</strong> 1.4G is consumer-grade; 1.3G is professional display-grade and generally requires a license. If you're unsure which you have, treat it as the more restricted class.</li>
-        <li><strong>Check local laws and permits</strong> before you buy or fire — they vary by state, county, and town.</li>
-        <li><strong>Keep your distance:</strong> a widely used minimum is <strong>at least 70 ft of clearance for every inch of shell diameter</strong> — treat that as a floor, give yourself more whenever you can, and keep spectators well back and upwind.</li>
+        <li><strong>Know your class:</strong> 1.4G is consumer-grade; "1.4 Pro" and 1.3G are professional/display-grade and generally require a license. If you're unsure which you have, treat it as the more restricted class.</li>
+        <li><strong>Check local laws and permits</strong> before you buy or fire — they vary by state, county, and town, and <strong>what you can legally buy varies widely from state to state</strong>.</li>
+        <li><strong>Keep your distance:</strong> For aerial shells, NFPA 1123 uses a minimum display-site radius of <strong>70 ft per inch of shell diameter</strong>. Many experienced operators prefer <strong>100 ft per inch or more</strong> when space allows. Treat 70 ft/in as an <strong>absolute minimum, not a target</strong> — keep spectators well outside the fallout area, account for wind, and use the largest separation your site permits.</li>
         <li><strong>Never</strong> lean over a tube, and <strong>never return to a dud</strong> — wait <strong>at least 20 minutes</strong> (longer is safer), then soak it thoroughly in water before handling.</li>
       </ul>
     </div>
@@ -299,8 +299,8 @@ const TERMS=[
    def:"A single firing output. When the system sends power to a cue, everything wired to that cue lights at the same instant. Shows are built cue by cue."},
   {term:"Series vs Parallel",aka:"two wiring methods",tool:{name:"MJG & Talon Calculator",url:CALC},
    def:"Two ways to wire several igniters onto one cue. <strong>Series</strong> chains them end-to-end (fires more, but one bad igniter kills the whole cue). <strong>Parallel</strong> wires each one side-by-side (a dud won't stop the rest, but you can fire fewer). Talons must always be parallel."},
-  {term:"E-match / MJG",aka:"electric match / initiator",tool:{name:"MJG & Talon Calculator",url:CALC},
-   def:"A tiny match head with two wires that lights the instant the firing system sends current to it. MJG is a common brand. It's the fast, precise way to fire a scripted show."},
+  {term:"E-match vs MJG initiator",aka:"electric igniters",tool:{name:"MJG & Talon Calculator",url:CALC},
+   def:"Two electric igniters that fire the instant your system sends current — the fast, precise way to run a scripted show. The difference matters: a <strong>professional e-match</strong> has a small pyrotechnic tip, which makes it an ATF-regulated explosive that generally requires a federal explosives license to buy. An <strong>MJG initiator</strong> ignites with a coated heating wire and contains no regulated explosive composition, so the ATF treats it as non-regulated — which is why it's the common hobbyist choice you can buy without that license. (Shipping and state/local laws still apply, and the device you're firing has its own rules.)"},
   {term:"Talon clip",aka:"clip-on igniter",tool:{name:"MJG & Talon Calculator",url:CALC},
    def:"A single-use electric igniter that clips straight onto a visco fuse — no taping or inserting. Convenient for cakes, but it's parallel-only and needs a longer firing pulse."},
   {term:"Fuse, visco &amp; burn rate",aka:"safety fuse, sec/ft",tool:{name:"PyroFuse Pro",url:FUSE},
@@ -323,12 +323,12 @@ const TERMS=[
    def:"The tube a shell is loaded into and launched from — usually HDPE plastic, often grouped together in a rack or 'gun.'"},
   {term:"Shell size (caliber)",aka:"bore / mm",tool:null,
    def:"The diameter of a shell and its mortar, such as 2\", 3\", or 6\". Bigger shells fly higher and break wider — and require bigger setback distances."},
-  {term:"1.4G vs 1.3G",aka:"consumer vs display",tool:null,
-   def:"Hazard classes. <strong>1.4G</strong> is consumer-grade fireworks anyone may buy where legal. <strong>1.3G</strong> is professional display-grade, which generally requires a license. Always know which you're handling."},
+  {term:"Fireworks classes (1.4G, 1.4 Pro, 1.3G)",aka:"consumer vs professional",tool:null,
+   def:"Hazard classes that tell you how powerful — and how restricted — a firework is. <strong>1.4G consumer:</strong> the cakes, fountains, and small shells sold to the public where legal. <strong>1.4G professional ('1.4 Pro'):</strong> the same low hazard division but labeled professional-use-only, sold to licensed operators rather than the public. <strong>1.3G display:</strong> the big professional shells, far more powerful, for licensed pyrotechnicians only. <strong>What you can legally buy varies widely by state</strong> — some allow most consumer items, others ban nearly everything — so always check your state and local laws before buying."},
   {term:"Lift, break &amp; time fuse",aka:"the parts of a shell",tool:null,
    def:"Three parts of an aerial shell: the <strong>lift charge</strong> launches it, the <strong>time fuse</strong> sets how long until it bursts at altitude, and the <strong>break</strong> is the charge that bursts it into stars."},
   {term:"Spectator setback",aka:"safety distance",tool:null,
-   def:"The minimum distance between the audience and the fireworks. A widely used floor is at least 70 ft of setback for every inch of shell diameter (the professional display standard) — treat it as a minimum, not a target, and always follow whichever is largest: that rule, the manufacturer's instructions, or your local code."}
+   def:"The minimum distance between the audience and the fireworks. For aerial shells, NFPA 1123 uses a minimum display-site radius of <strong>70 ft per inch of shell diameter</strong>, and many experienced operators prefer <strong>100 ft per inch or more</strong>. Treat 70 ft/in as an absolute minimum, not a target: keep spectators well outside the fallout area, account for wind, and use the largest separation your site permits. Always follow whichever is largest — this rule, the manufacturer's instructions, or your local code."}
 ];
 
 /* =========================================================================
@@ -521,7 +521,7 @@ const CATLABEL={aerial:"Aerial",cake:"Cake & Ground",novelty:"Novelty"};
 
 function cardHTML(fx,idx){
   const term=fx.name.split("/")[0].trim();
-  const yt="https://www.youtube.com/@dominatorfireworks/search?query="+encodeURIComponent(term);
+  const yt="https://www.youtube.com/results?search_query="+encodeURIComponent(term+" firework");
   return `<article class="fx-card" id="e-${slug(fx.name)}" tabindex="0">
     <div class="fx-burst">${renderBurst(fx,idx)}</div>
     <span class="fx-cat" data-cat="${fx.cat}">${CATLABEL[fx.cat]}</span>
